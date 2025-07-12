@@ -234,8 +234,19 @@ body {
 .WorkoutForm {
   background: rgba(255,255,255,0.95);
   border-radius: 20px;
-  padding: 30px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 120px); /* Anpassung für Header */
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+/* Scroll Container */
+.FormScrollContainer {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
 }
 
 .FormTitle {
@@ -389,11 +400,15 @@ body {
   line-height: 1;
 }
 
-/* Form Actions */
+/* Form Actions - Fixed am unteren Rand */
 .FormActions {
   display: flex;
   gap: 15px;
-  margin-top: 30px;
+  padding: 20px 30px;
+  background: rgba(255,255,255,0.98);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-radius: 0 0 20px 20px;
+  flex-shrink: 0;
 }
 
 .FormButton {
@@ -407,7 +422,7 @@ body {
 }
 
 .CancelButton {
-  background: #f8f9fa;
+  background: #ff0000;
   color: #666;
   border: 2px solid #e0e0e0;
 }
@@ -430,6 +445,11 @@ body {
 .FormButtonText {
   color: white;
   font-weight: 600;
+}
+
+/* Spacer für besseren Abstand */
+.FormSpacer {
+  height: 20px;
 }
 
 /* Workout Timer */
@@ -655,6 +675,48 @@ body {
   
   .TimerButton {
     margin: 5px auto;
+  }
+}
+
+/* Mobile Optimierungen */
+@media (max-width: 768px) {
+  .WorkoutForm {
+    height: calc(100vh - 100px);
+    max-height: 85vh;
+  }
+  
+  .FormScrollContainer {
+    padding: 20px;
+  }
+  
+  .FormActions {
+    padding: 15px 20px;
+    flex-direction: column;
+  }
+  
+  .FormButton {
+    margin-bottom: 10px;
+  }
+  
+  .FormButton:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Bessere Input-Styles für mobile Geräte */
+@media (max-width: 768px) {
+  .FormInput {
+    padding: 15px 16px;
+    font-size: 16px; /* Verhindert Zoom auf iOS */
+  }
+  
+  .ExerciseInputs {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .InputGroup {
+    margin-bottom: 15px;
   }
 }
 

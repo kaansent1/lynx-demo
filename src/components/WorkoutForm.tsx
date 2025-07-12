@@ -48,88 +48,94 @@ export function WorkoutForm({ workout, onSave, onCancel }: WorkoutFormProps) {
   }, [name, exercises, workout, onSave])
   
   return (
-    <scroll-view className='WorkoutForm'>
-      <text className='FormTitle'>
-        {workout ? 'Workout bearbeiten' : 'Neues Workout'}
-      </text>
+    <view className='WorkoutForm'>
+      <scroll-view className='FormScrollContainer'>
+        <text className='FormTitle'>
+          {workout ? 'Workout bearbeiten' : 'Neues Workout'}
+        </text>
 
-      <view className='FormGroup'>
-        <text className='FormLabel'>Workout Name</text>
-        <input
-          className='FormInput'
-          value={name}
-          placeholder='z.B. Push Day'
-          onChange={(e: any) => setName(e.target.value)}
-        />
-      </view>
-
-      <view className='FormGroup'>
-        <text className='FormLabel'>Übungen hinzufügen</text>
-        <view className='ExerciseForm'>
+        <view className='FormGroup'>
+          <text className='FormLabel'>Workout Name</text>
           <input
             className='FormInput'
-            value={newExercise.name}
-            placeholder='Übungsname'
-            bindinput={(e: any) => setNewExercise(prev => ({ ...prev, name: e.detail.value }))}
+            value={name}
+            placeholder='z.B. Push Day'
+            bindinput={(e: any) => setName(e.detail.value)}
           />
-          <view className='ExerciseInputs'>
-            <view className='InputGroup'>
-              <text className='InputLabel'>Sätze</text>
-              <input
-                className='FormInput Small'
-                type='number'
-                value={newExercise.sets?.toString()}
-                bindinput={(e: any) => setNewExercise(prev => ({ ...prev, sets: parseInt(e.detail.value) || 3 }))}
-              />
-            </view>
-            <view className='InputGroup'>
-              <text className='InputLabel'>Wdh.</text>
-              <input
-                className='FormInput Small'
-                type='number'
-                value={newExercise.reps?.toString()}
-                bindinput={(e: any) => setNewExercise(prev => ({ ...prev, reps: parseInt(e.detail.value) || 12 }))}
-              />
-            </view>
-            <view className='InputGroup'>
-              <text className='InputLabel'>Gewicht (kg)</text>
-              <input
-                className='FormInput Small'
-                type='number'
-                value={newExercise.weight?.toString()}
-                bindinput={(e: any) => setNewExercise(prev => ({ ...prev, weight: parseFloat(e.detail.value) || 0 }))}
-              />
-            </view>
-          </view>
-          <view className='AddExerciseButton' bindtap={onAddExercise}>
-            <text className='AddExerciseButtonText'>+ Übung hinzufügen</text>
-          </view>
         </view>
-      </view>
 
-      {exercises.length > 0 && (
-        <view className='ExerciseList'>
-          <text className='FormLabel'>Übungen ({exercises.length})</text>
-          {exercises.map(exercise => (
-            <view key={exercise.id} className='ExerciseItem'>
-              <view className='ExerciseInfo'>
-                <text className='ExerciseName'>{exercise.name}</text>
-                <text className='ExerciseDetails'>
-                  {exercise.sets} Sätze × {exercise.reps} Wdh.
-                  {exercise.weight ? ` @ ${exercise.weight}kg` : ''}
-                </text>
+        <view className='FormGroup'>
+          <text className='FormLabel'>Übungen hinzufügen</text>
+          <view className='ExerciseForm'>
+            <input
+              className='FormInput'
+              value={newExercise.name}
+              placeholder='Übungsname'
+              bindinput={(e: any) => setNewExercise(prev => ({ ...prev, name: e.detail.value }))}
+            />
+            <view className='ExerciseInputs'>
+              <view className='InputGroup'>
+                <text className='InputLabel'>Sätze</text>
+                <input
+                  className='FormInput Small'
+                  type='number'
+                  value={newExercise.sets?.toString()}
+                  bindinput={(e: any) => setNewExercise(prev => ({ ...prev, sets: parseInt(e.detail.value) || 3 }))}
+                />
               </view>
-              <view 
-                className='RemoveExerciseButton' 
-                bindtap={() => onRemoveExercise(exercise.id)}
-              >
-                <text className='RemoveExerciseButtonText'>×</text>
+              <view className='InputGroup'>
+                <text className='InputLabel'>Wdh.</text>
+                <input
+                  className='FormInput Small'
+                  type='number'
+                  value={newExercise.reps?.toString()}
+                  bindinput={(e: any) => setNewExercise(prev => ({ ...prev, reps: parseInt(e.detail.value) || 12 }))}
+                />
+              </view>
+              <view className='InputGroup'>
+                <text className='InputLabel'>Gewicht (kg)</text>
+                <input
+                  className='FormInput Small'
+                  type='number'
+                  value={newExercise.weight?.toString()}
+                  bindinput={(e: any) => setNewExercise(prev => ({ ...prev, weight: parseFloat(e.detail.value) || 0 }))}
+                />
               </view>
             </view>
-          ))}
+            <view className='AddExerciseButton' bindtap={onAddExercise}>
+              <text className='AddExerciseButtonText'>+ Übung hinzufügen</text>
+            </view>
+          </view>
         </view>
-      )}
 
+        {exercises.length > 0 && (
+          <view className='ExerciseList'>
+            <text className='FormLabel'>Übungen ({exercises.length})</text>
+            {exercises.map(exercise => (
+              <view key={exercise.id} className='ExerciseItem'>
+                <view className='ExerciseInfo'>
+                  <text className='ExerciseName'>{exercise.name}</text>
+                  <text className='ExerciseDetails'>
+                    {exercise.sets} Sätze × {exercise.reps} Wdh.
+                    {exercise.weight ? ` @ ${exercise.weight}kg` : ''}
+                  </text>
+                </view>
+                <view 
+                  className='RemoveExerciseButton' 
+                  bindtap={() => onRemoveExercise(exercise.id)}
+                >
+                  <text className='RemoveExerciseButtonText'>×</text>
+                </view>
+              </view>
+            ))}
+          </view>
+        )}
+
+        {/* Spacer für besseren Abstand zum Button */}
+        <view className='FormSpacer' />
+      </scroll-view>
+
+      {/* Buttons außerhalb des Scroll-Bereichs */}
       <view className='FormActions'>
         <view className='FormButton CancelButton' bindtap={onCancel}>
           <text className='FormButtonText'>Abbrechen</text>
@@ -138,6 +144,6 @@ export function WorkoutForm({ workout, onSave, onCancel }: WorkoutFormProps) {
           <text className='FormButtonText'>Speichern</text>
         </view>
       </view>
-    </scroll-view>
+    </view>
   )
 }
