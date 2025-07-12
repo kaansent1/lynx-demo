@@ -1,119 +1,682 @@
-:root {
-  background-color: #000;
-  --color-text: #fff;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Background */
 .Background {
   position: fixed;
-  background: radial-gradient(
-    71.43% 62.3% at 46.43% 36.43%,
-    rgba(18, 229, 229, 0) 15%,
-    rgba(239, 155, 255, 0.3) 56.35%,
-    #ff6448 100%
-  );
-  box-shadow: 0px 12.93px 28.74px 0px #ffd28db2 inset;
-  border-radius: 50%;
-  width: 200vw;
-  height: 200vw;
-  top: -60vw;
-  left: -14.27vw;
-  transform: rotate(15.25deg);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: -1;
 }
 
+/* App Container */
 .App {
-  position: relative;
   min-height: 100vh;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow-y: auto; /* Ermöglicht vertikales Scrollen */
+  max-height: 100vh;
+}
+
+/* Header */
+.Header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
 }
 
-text {
-  color: var(--color-text);
+.AppTitle {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.Banner {
-  flex: 5;
+.BackButton {
+  background: rgba(255,255,255,0.2);
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.BackButton:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+.BackButtonText {
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Workout List */
+.WorkoutList {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.ListHeader {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  z-index: 100;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
 }
 
-.Logo {
-  flex-direction: column;
+.ListTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.AddButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+}
+
+.AddButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+}
+
+.AddButtonText {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Empty State */
+.EmptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.EmptyStateText {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.EmptyStateSubText {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* Workout Cards */
+.WorkoutCards {
+  display: grid;
+  gap: 20px;
+}
+
+.WorkoutCard {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.WorkoutCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.WorkoutCardHeader {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.WorkoutCardTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.WorkoutCardDate {
+  font-size: 14px;
+  color: #666;
+  background: #f8f9fa;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.WorkoutCardInfo {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.WorkoutCardActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ActionButton {
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  font-weight: 500;
+  flex: 1;
+  text-align: center;
+  min-width: 80px;
+}
+
+.StartButton {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.StartButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(76,175,80,0.4);
+}
+
+.EditButton {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+.EditButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(33,150,243,0.4);
+}
+
+.DeleteButton {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  color: white;
+}
+
+.DeleteButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(244,67,54,0.4);
+}
+
+.ActionButtonText {
+  color: white;
+  font-weight: 500;
+}
+
+/* Workout Form */
+.WorkoutForm {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.FormTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.FormGroup {
+  margin-bottom: 25px;
+}
+
+.FormLabel {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
   margin-bottom: 8px;
 }
 
-.Logo--react {
-  width: 100px;
-  height: 100px;
-  animation: Logo--spin infinite 20s linear;
+.FormInput {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: white;
 }
 
-.Logo--lynx {
-  width: 100px;
-  height: 100px;
-  animation: Logo--shake infinite 0.5s ease;
+.FormInput:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
 }
 
-@keyframes Logo--spin {
+.FormInput.Small {
+  width: auto;
+  min-width: 60px;
+}
+
+/* Exercise Form */
+.ExerciseForm {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.ExerciseInputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.InputLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.AddExerciseButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.AddExerciseButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+}
+
+.AddExerciseButtonText {
+  color: white;
+  font-weight: 600;
+}
+
+/* Exercise List */
+.ExerciseList {
+  margin-top: 20px;
+}
+
+.ExerciseItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.ExerciseItem:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.ExerciseInfo {
+  flex: 1;
+}
+
+.ExerciseName {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.ExerciseDetails {
+  font-size: 14px;
+  color: #666;
+}
+
+.RemoveExerciseButton {
+  background: #ff4757;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.RemoveExerciseButton:hover {
+  background: #ff3742;
+  transform: scale(1.1);
+}
+
+.RemoveExerciseButtonText {
+  color: white;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Form Actions */
+.FormActions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.FormButton {
+  flex: 1;
+  padding: 15px 25px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-weight: 600;
+}
+
+.CancelButton {
+  background: #f8f9fa;
+  color: #666;
+  border: 2px solid #e0e0e0;
+}
+
+.CancelButton:hover {
+  background: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.SaveButton {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.SaveButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(76,175,80,0.4);
+}
+
+.FormButtonText {
+  color: white;
+  font-weight: 600;
+}
+
+/* Workout Timer */
+.WorkoutTimer {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.TimerHeader {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.WorkoutName {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.Progress {
+  font-size: 14px;
+  color: #666;
+  background: #f8f9fa;
+  padding: 5px 15px;
+  border-radius: 15px;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Current Exercise */
+.CurrentExercise {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  text-align: center;
+  color: white;
+}
+
+.CurrentExercise .ExerciseName {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.SetInfo {
+  font-size: 18px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.CurrentExercise .ExerciseDetails {
+  font-size: 16px;
+  opacity: 0.8;
+  color: white;
+}
+
+/* Rest Timer */
+.RestTimer {
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.RestTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #856404;
+  margin-bottom: 15px;
+}
+
+.RestTime {
+  font-size: 48px;
+  font-weight: bold;
+  color: #856404;
+  margin-bottom: 20px;
+  font-family: monospace;
+}
+
+.RestActions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Timer Actions */
+.SetActions {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.TimerButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 10px auto;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+  width: fit-content;
+}
+
+.TimerButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+}
+
+.TimerButton.CompleteButton {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  box-shadow: 0 4px 15px rgba(76,175,80,0.4);
+}
+
+.TimerButton.CompleteButton:hover {
+  box-shadow: 0 6px 20px rgba(76,175,80,0.6);
+}
+
+.TimerButton.StartButton {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  box-shadow: 0 4px 15px rgba(33,150,243,0.4);
+}
+
+.TimerButton.StartButton:hover {
+  box-shadow: 0 6px 20px rgba(33,150,243,0.6);
+}
+
+.TimerButtonText {
+  color: white;
+  font-weight: 600;
+}
+
+/* Exercise Overview List */
+.ExerciseList {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.ExerciseList .ListTitle {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.ExerciseOverview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border-left: 4px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.ExerciseOverview.Current {
+  border-left-color: #667eea;
+  background: linear-gradient(90deg, rgba(102,126,234,0.1) 0%, white 100%);
+  transform: scale(1.02);
+}
+
+.ExerciseOverview.Completed {
+  border-left-color: #4CAF50;
+  background: linear-gradient(90deg, rgba(76,175,80,0.1) 0%, white 100%);
+  opacity: 0.8;
+}
+
+.ExerciseOverviewName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.ExerciseOverviewDetails {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    padding: 15px;
+  }
+  
+  .AppTitle {
+    font-size: 24px;
+  }
+  
+  .WorkoutCardActions {
+    flex-direction: column;
+  }
+  
+  .ActionButton {
+    flex: none;
+    margin-bottom: 5px;
+  }
+  
+  .ExerciseInputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .FormActions {
+    flex-direction: column;
+  }
+  
+  .RestActions {
+    flex-direction: column;
+  }
+  
+  .TimerButton {
+    margin: 5px auto;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes Logo--shake {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
+.WorkoutList,
+.WorkoutForm,
+.WorkoutTimer {
+  animation: fadeIn 0.5s ease-out;
 }
 
-.Content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.Arrow {
-  width: 24px;
-  height: 24px;
-}
-
-.Title {
-  font-size: 36px;
-  font-weight: 700;
-}
-
-.Subtitle {
-  font-style: italic;
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.Description {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 15rpx;
-}
-
-.Hint {
-  font-size: 12px;
-  margin: 5px;
-  color: rgba(255, 255, 255, 0.65);
+/* Smooth transitions for all interactive elements */
+* {
+  transition: all 0.3s ease;
 }

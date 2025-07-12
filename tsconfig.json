@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "@lynx-js/react",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "module": "node16",
+    "moduleResolution": "node16",
     "strict": true,
-    "verbatimModuleSyntax": false,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "target": "ES2020",
-    "allowSyntheticDefaultImports": true
+    "skipLibCheck": true
   },
-  "exclude": ["dist/"],
+  "exclude": ["dist/"]
 }
